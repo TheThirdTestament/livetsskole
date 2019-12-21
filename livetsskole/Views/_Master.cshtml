@@ -1,0 +1,113 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = null;
+    var logo = Model.Value<IPublishedContent>("logo", fallback: Fallback.ToAncestors);
+}
+<!doctype html>
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    @*<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120736505-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'UA-120736505-1');
+        </script>*@
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="@Model.Value("metaDescription", fallback: Fallback.ToAncestors)">
+
+    <link href="https://fonts.googleapis.com/css?family=Lora|Montserrat|Open+Sans&display=swap" rel="stylesheet">
+    @*@Styles.Render("~/bundles/style")*@
+
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <link href="~/Content/css/RTE.css" rel="stylesheet" />
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    @if (Model.Value("metaTitle", fallback: Fallback.ToAncestors).ToString().Length > 4)
+    {
+        <title>@Model.Value("metaTitle", fallback: Fallback.ToAncestors)</title>
+    }
+
+    else if (Model.Name.ToString().Length > 4)
+    {
+        <title>@Model.Name</title>
+    }
+
+
+
+
+</head>
+<body class="site">
+    <div class="container main" id="wrap">
+        <header class="wrapper clearfix">
+            <a id="header" href="\" style="display:block; white-space: nowrap;">
+                <div class="row">
+
+                    <div class="col-md-2 col-sm-2" id="logo">
+                        @if (logo != null)
+                        {
+                            <img src="@logo.Url" alt="logo" />
+                        }
+                    </div>
+                    <div class="col-md-10" style="text-align:left">
+                        <div id="site-title">@Model.Value("siteTitle", fallback: Fallback.ToAncestors)</div>
+                        <div id="site-sub-title">@Model.Value("siteSubtitle", fallback: Fallback.ToAncestors)</div>
+                    </div>
+
+                </div>
+            </a>
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    @Umbraco.RenderMacro("mainMenu")
+                </div><!-- /.navbar-collapse -->
+
+            </nav>
+        </header>
+
+        <!-- main content -->
+        <div class="main-content">
+            @RenderBody()
+        </div>
+
+
+
+    </div> <!-- /.container -->
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    @Model.Value("contactInfo", fallback: Fallback.ToAncestors)
+                </div>
+                <div class="col-md-3">
+                    @Model.Value("contact", fallback: Fallback.ToAncestors)
+                </div>
+                <div class="col-md-3">
+                    @Model.Value("aboutUs", fallback: Fallback.ToAncestors)
+                </div>
+                <div class="col-md-3">
+                    @Html.Raw(Model.Value("followUs", fallback: Fallback.ToAncestors))
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/09d2dfdfbb.js"></script>
+</body>
+</html>

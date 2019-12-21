@@ -1,0 +1,3 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["1pigV"]); }
+
+__d("UFI2ReactionsMenu",["requireCond","cr:682215"],(function(a,b,c,d,e,f){"use strict";e.exports=b("cr:682215")}),null);

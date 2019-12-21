@@ -1,0 +1,19 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Home>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-8">
+            @Html.GetGridHtml(Model, "mainContent")
+        </div>
+
+        <div class="col-md-4 column" style="margin-top: 2.5em;">
+            @Umbraco.RenderMacro("upcommingEvents")
+            @Umbraco.RenderMacro("dnvWidget")
+        </div>
+    </div>
+</div>

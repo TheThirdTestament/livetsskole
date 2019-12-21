@@ -1,0 +1,36 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@{
+
+    var root = Umbraco.ContentAtRoot().FirstOrDefault();
+    var mainMenu = root.Children.Where(x => x.IsVisible()).OrderBy(x => x.SortOrder);
+   
+    // delete
+    //var root = CurrentPage.Site();
+}
+
+<ul class="navbar-nav">
+
+    @foreach (var menuItem in mainMenu)
+    {
+        if (menuItem.Children().Where(x => x.IsVisible()).Count() > 0 && menuItem.Name != "Arrangementer")
+        {
+            <li class="nav-item dropdown @(menuItem.IsAncestorOrSelf(Model.Content) ? "current" : null)">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" role="button" aria-haspopup="true" aria-expanded="false" href="@menuItem.Url">@menuItem.Name</a>
+
+                <div class="dropdown-menu" aria-labelledby="Preview">
+                    @foreach (var subMenuItem in menuItem.Children().Where(x => x.IsVisible()))
+                    {
+                    <a class="nav-link @(menuItem.IsAncestorOrSelf(Model.Content) ? "current" : null)" href="@subMenuItem.Url">@subMenuItem.Name</a>
+                    }
+                </div>
+            </li>
+        }
+        else
+        {
+            <li class="nav-item @(menuItem.IsAncestorOrSelf(Model.Content)  ? "current" : null)">
+                <a class="nav-link" href="@menuItem.Url">@menuItem.Name</a>
+            </li>
+        }
+    }
+
+</ul>

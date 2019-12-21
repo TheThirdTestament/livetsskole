@@ -1,0 +1,150 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.SimplePage>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using Umbraco.Web.Models;
+@using System.Globalization;
+@using System.Text.RegularExpressions;
+@using livetsskole.App_Code;
+@{
+    Layout = "master.cshtml";
+}
+
+@{
+    // Content node selections
+    var root = Umbraco.ContentAtRoot().FirstOrDefault();
+    var selection = root.FirstChildOfType("events").Children().Where(x => x.Value<DateTime>("starttime") < DateTime.Now && x.Value<Link>("videoLink") != null && x.IsVisible()).OrderByDescending(x => x.GetProperty("starttime").Value()).ToArray();
+
+    // Foredrag
+    var lectures = selection.Where(x => x.GetProperty("eventType").Value<string>() == "Foredrag og dialog" || x.GetProperty("eventType").Value<string>() == "Foredrag" || x.GetProperty("eventType").Value<string>() == "Studiegruppe og foredrag");
+
+    // Fest for Martinus kosmiske indvielse
+    var celebration = selection.Where(x => x.GetProperty("eventType").Value<string>
+        () == "Fest for Martinus komiske indvielse");
+
+    // Sommerskole
+    var summerSchool = selection.Where(x => x.GetProperty("eventType").Value<string>
+        () == "Sommerkursus");
+
+
+    @helper StripParagraph(string input)
+    {
+        if (!string.IsNullOrEmpty(input))
+        {
+            input = Regex.Replace(input, "</?p>", String.Empty);
+            @Html.Raw(input)
+        }
+    }
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+
+
+            @if (lectures.Count() > 0 || celebration.Count() > 0 || summerSchool.Count() > 0)
+            {
+
+                <h1>@Model.GetProperty("header").Value()</h1>
+
+
+                if (lectures.Count() > 0)
+                {
+
+
+                    <h2 style="padding-top:1em;">Foredrag</h2>
+                    <ul style="list-style-type: none;">
+                        @foreach (var item in lectures)
+                        {
+                            if (@item.GetProperty("lecturer").Value().ToString().Trim().Length > 0)
+                            {
+                                <li style="padding-top:1em;">
+                                    @item.GetProperty("title").Value(), @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("D", new CultureInfo("da-DK"))) <br />
+                                    <a href="@item.Url">@item.GetProperty("subtitle").Value()</a><br />
+                                    ved @item.GetProperty("lecturer").Value()<br />
+                                    @item.GetProperty("time").Value().ToString().FirstCharToLower().
+                                </li>
+                            }
+
+                        }
+                    </ul>
+
+
+                }
+                if (celebration.Count() > 0)
+                {
+
+                    <h2 style="padding-top:0.5em;">Den årlige festdag i Brøndby</h2>
+                    <ul style="list-style-type: none;">
+                        @foreach (var item in celebration)
+                        {
+                        <li style="padding-top:1em;">
+                            @{
+
+                                @*Multiple links
+                                var links = item.GetProperty("videoLink").Value<IEnumerable<Link>>();
+                                if (links.Any())
+                                {
+                                <ul>
+                                    @foreach (var link in links)
+                                    {
+                                        <li><a href="@link.Url" target="@link.Target">@link.Name</a></li>
+                                    }
+                                </ul>
+                                }*@
+
+                                var link = item.Value<Link>("videoLink");
+                                if (link != null)
+                                {
+                                    <a href="@link.Url" target="@link.Target">@link.Name</a><br />
+                                }
+                            }
+                            @item.GetProperty("time").Value().
+                        </li>
+                        }
+                    </ul>
+                }
+                if (summerSchool.Count() > 0)
+                {
+                    <h2 style="padding-top:0.5em;">Sommerkursus</h2>
+                    <ul style="list-style-type: none;">
+                        @foreach (var item in summerSchool)
+                        {
+                            <li style="padding-top:1em;">
+                                @StripParagraph(item.GetProperty("comment").Value().ToString())
+                            </li>
+                        }
+                    </ul>
+
+                }
+            }
+        </div>
+        <div class="col-md-4 column" style="margin-top: 5em;">
+
+            @if (Model.LeftPanel != null && Model.LeftPanel.ToString().Length > 5 )
+            {
+                <div class="card" style="width:95%">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-size:130%;font-weight:600;text-align:center">Flere videoer</h5>
+                        <ul style="list-style:none;padding:1em 1em 0 1em">
+                            <li>
+                                @Model.LeftPanel
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            }
+
+
+            @if (Model.BootstrapWidgets != null && Model.BootstrapWidgets.Count() > 0)
+            {
+                var items = Model.Value<IEnumerable<IPublishedElement>>("bootstrapWidgets");
+
+                foreach (var item in items)
+                {
+
+                    @Html.Partial("~/Views/Partials/_bootstrapCard.cshtml", item);
+
+                }
+            }
+        </div>
+    </div>
+</div>

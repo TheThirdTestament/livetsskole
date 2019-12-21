@@ -1,0 +1,40 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using Umbraco.Core.Models
+@using Umbraco.Web
+
+
+@{
+
+    // Content node selection
+    var root = Umbraco.ContentAtRoot().Where(x => x.Name == "Global").FirstOrDefault();
+    var item = root.FirstChildOfType("dnv").Children().Where(x => x.IsVisible()).OrderByDescending(x => x.GetProperty("volume").Value()).ThenBy(x => x.GetProperty("issue").Value()).First();
+    
+    //int i = 0;
+    string titleText = "";
+    
+
+    int grid = 4;
+    double gridCol = 12 / grid;
+    var intGridCol = (int)Math.Ceiling(gridCol);
+}
+
+@{
+ 
+    var imageUrl = item.Value<IPublishedContent>("cover").Url;
+
+    
+    
+    <div class="card" style="text-align:center;background-color:white;border:hidden">
+        
+        <div style="padding: 1em 0 0.5em 0;">
+            <a rel="noopener" href="https://dettredietestamente.info/den-ny-verdensimpuls/" target="_blank"><img style="width: 90%; border: solid 1px;" sizes="(min-width: 1200px) calc(1120px / @intGridCol), (min-width: 992px) calc(920px / @intGridCol), (min-width: 768px) calc(700px / @intGridCol), 100vw" srcset="@imageUrl?width=200 200w,@imageUrl?width=200 200w,@imageUrl?width=340 340w,@imageUrl?width=447 447w,@imageUrl?width=541 541w,@imageUrl?width=628 628w,@imageUrl?width=703 703w,@imageUrl?width=775 775w,@imageUrl?width=843 843w, @imageUrl?width=908 908w,@imageUrl?width=967 967w,@imageUrl?width=1023 1023w,@imageUrl?width=1082 1082w,@imageUrl?width=1135 1135w,@imageUrl?width=1188 1188w,@imageUrl?width=1242 1242w,@imageUrl?width=1291 1291w,@imageUrl?width=1340 1340w, @imageUrl?width=1387 1387w,@imageUrl?width=1431 1431w,@imageUrl?width=1476 1476w,@imageUrl?width=1520 1520w,@imageUrl?width=1565 1565w,@imageUrl?width=1605 1605w,@imageUrl?width=1650 1650w,@imageUrl?width=1690 1690w, @imageUrl?width=1729 1729w,@imageUrl?width=1765 1765w,@imageUrl?width=1805 1805w,@imageUrl?width=1847 1847w,@imageUrl?width=1885 1885w,@imageUrl?width=1923 1923w,@imageUrl?width=1956 1956w,@imageUrl?width=1995 1995w,@imageUrl?width=2031 2031w,@imageUrl?width=2069 2069w,@imageUrl?width=2101 2101w,@imageUrl?width=2137 2137w,@imageUrl?width=2170 2170w,@imageUrl?width=2206 2206w,@imageUrl?width=2240 2240w" src="@imageUrl" alt="@titleText" /></a>
+</div>
+        <p style="text-decoration:none;">
+            <a rel="noopener" href="https://dettredietestamente.info/den-ny-verdensimpuls/" target="_blank">
+                <em>Den ny Verdensimpuls</em>, nr. @item.GetProperty("issue").Value() @item.GetProperty("volume").Value()
+            </a>
+
+        </p>
+    </div>
+
+}

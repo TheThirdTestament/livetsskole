@@ -1,0 +1,44 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.SimplePage>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-8">
+
+            @if (Model.Header != null && Model.Header.ToString().Length > 5)
+            {
+                <h1>@Model.Header</h1>
+            }
+            
+            @if (Model.MainContent != null && Model.MainContent.ToString().Length > 5)
+            {
+                @Model.MainContent
+            }
+
+        </div>
+
+        <div class="col-md-4 column" style="margin-top: 2.5em;">
+            @if (Model.LeftPanel != null && Model.LeftPanel.ToString().Length > 5)
+            {
+                @Model.LeftPanel
+            }
+
+
+            @if (Model.BootstrapWidgets != null && Model.BootstrapWidgets.Count() > 0)
+            {
+                var items = Model.Value<IEnumerable<IPublishedElement>>("bootstrapWidgets");
+
+                foreach (var item in items)
+                {
+
+                    @Html.Partial("~/Views/Partials/_bootstrapCard.cshtml", item);
+
+                }
+            }
+        </div>
+    </div>
+</div>

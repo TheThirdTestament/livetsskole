@@ -1,0 +1,42 @@
+/**umb_name:Header 2*/
+h2{font-size: 120%; font-weight: bold;}
+
+/**umb_name:Header 3*/
+h3{font-size: 110%; font-weight: bold;}
+
+/**umb_name:Quote*/
+blockquote {
+    font-size: 100%;
+    margin: 0 2rem 1.5rem 2rem;
+}
+
+/**umb_name:Pull Quote*/
+div.pullquote {
+    background: #f9f9f9;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+}
+div.pullquote:before {
+    color: #ccc;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+div.pullquote p {
+ display: inline;
+}
+
+/**umb_name:Small*/
+.small {
+    font-size: 80%;
+}
+
+/**umb_name:Super*/
+.sup {
+    vertical-align: super;
+    font-size: 70%;
+}

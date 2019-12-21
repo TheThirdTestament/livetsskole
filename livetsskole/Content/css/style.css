@@ -1,0 +1,499 @@
+﻿/* custom style */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+.grid-section {
+    float:right;
+}
+
+
+body {
+    margin: 0;
+    font-family: Lora, Georgia, Merriweather, Times, 'Times New Roman', serif;
+    margin-bottom: 22em;
+    /* font-family: 'Open Sans', 'Times New Roman', Times, serif; */
+}
+
+#wrap {
+    padding-bottom: 6em;
+}
+
+div#logo {
+    text-align: center;
+    margin: 15px 0 15px 0;
+}
+
+div#site-title {
+    font-family: Times, 'Times New Roman', serif;
+    font-size: 175%;
+    font-weight: bold;
+    color: #0174cc;
+    margin-top: 1.5rem;
+}
+
+#site-sub-title {
+    font-family: Times, 'Times New Roman', serif;
+    font-size: 150%;
+    color: #0174cc;
+    padding-bottom: 1rem;
+}
+
+nav {
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+/* bør formodentlig fjernes - ingen effekt - effekten ligger på wrap */
+div.main {
+    padding-bottom: 4em;
+}
+
+div.text-body {
+    padding-right: 1rem;
+}
+
+div.top-image {
+    padding: 0;
+
+}
+
+div.top-image div.container {
+    padding-top: 4em;
+    text-align:center;
+    width: 60%;
+}
+    
+.two-column-frontpage-image {
+    margin-top: -6em;
+}
+
+div.grid-info-box {
+    margin-top: 2em;
+}
+
+
+.article {
+    padding-right: 0em;
+}
+
+h1 {
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    margin-top: 2rem;
+    font-size: 180%;
+    font-weight: bold;
+}
+
+div#ten-nuggets h1 {
+    padding-bottom: 0.5em;
+}
+
+h2 {
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    font-size: 140%;
+    font-weight: bold;
+}
+
+h2.paragraph {
+        font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+        font-size: 130%;
+        font-weight: bold;
+        margin-top: 2rem;
+        font-weight: bold;
+}
+
+h2.blue-header {
+    color: #0056b3;
+}
+
+h3.paragraph {
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+h3 {
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+h1.contact-form-header {
+    margin-bottom: 1em;
+}
+
+.headline, .sub-headline, .author {
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    font-size: 110%;
+}
+
+.card-title {
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+
+p.large-font-size {
+    /*color: #0056b3;*/
+    font-family: Georgia;
+    font-size: 130%;
+}
+
+div.registration-form {
+    margin-bottom: 4em;
+}
+
+div.card {
+    background-color: #F5F8FA;
+    width: 90%;
+    margin-bottom: 4em;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+
+div#ten-nuggets-image-container img {
+    border: solid thin;
+}
+
+div.ten-nuggets-large-portrait-symbol div.container {
+    width: 30%;
+}
+
+div.ten-nuggets-large-square-symbol div.container {
+    width: 40%;
+}
+
+div.right-panel-dtt-cover .container {
+    width: 80%
+}
+
+div.right-panel-dtt-cover img {
+    border: 1px solid;
+}
+
+div.right-panel-dtt-cover p.caption {
+    font-size: 0.8rem;
+}
+
+div.book-list h2 {
+    padding-top: 2rem;
+}
+
+div.article-intro, .intro {
+    font-family: Montserrat, Arial, Helvetica, sans-serif;
+    font-size: 105%;
+    color: #777;
+}
+
+li {
+    margin: 0 0 7px 0;
+}
+
+img {
+    width: 100%;
+    max-height: 100%;
+}
+
+div.white-poster img {
+    border: 1px solid #ddd;
+}
+
+p.image-border img, img.image-border {
+    border: 1px solid #021a40;
+}
+
+    figure.item {
+        /* To correctly align image, regardless of content height: */
+        vertical-align: top;
+        display: inline-block;
+        /* To horizontally center images and caption */
+        text-align: center;
+        /* The width of the container also implies margin around the images. */
+        margin-bottom: 50px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+figure.item img {
+    width:auto;
+    height:auto;
+    max-width:100%;
+    max-height:100%;
+    border:solid 1px;
+}
+
+.caption {
+    /* Make the caption a block so it occupies its own line. */
+    font-family: Montserrat, Arial, Helvetica, sans-serif;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 2em;
+    font-size: 0.9em;
+    color: #777;
+}
+
+
+
+a {
+    color: #0060AC;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a.nav-link, a:visited.nav-link, a:link.nav-linkactive {
+    font-size: 80%;
+    color: #000 !important;
+    text-transform: uppercase;
+}
+
+a:hover#header {
+    text-decoration: none;
+}
+
+div.dropdown-menu a {
+    font-weight: normal;
+}
+
+a.nav-link:hover {
+    text-decoration: underline;
+}
+
+nav.navbar {
+    background-color: #fff;
+    padding: 0;
+    border-top: solid 1px;
+    border-top-color: #ddd;
+    border-bottom: solid 2px;
+    border-bottom-color: #ddd;
+}
+
+nav ul.navbar-nav > li.nav-item {
+    padding: 0 10px 0 10px;
+    display: block;
+}
+
+nav div#navbarSupportedContent {
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown-menu > .nav-link {
+    text-transform: initial;
+}
+
+
+.current {
+    font-weight: bold;
+}
+
+.social-media a {
+    color: #999;
+    text-decoration: none;
+}
+
+div.intro {
+    color:#777;
+}
+
+div.author {
+    font-size: 120%;
+    margin-bottom: 2rem;
+}
+
+div.author span {
+    font-weight: 600;
+}
+
+div.center-content {
+    text-align: center;
+}
+
+.form-horizontal .control-label {
+    text-align: left;
+    font-weight: bold;
+}
+
+.field-validation-error {
+    color: darkred;
+}
+
+div#single-symbol-page-header {
+    margin-bottom: 4rem;
+}
+
+div#symbol-image div {
+ text-align:center;
+}
+
+div#simple-grid-page-header div {
+    margin-bottom: 1rem;
+}
+
+div#symbol-explanation {
+    padding: 0 2em 2em 2em;
+}
+
+div#symbol-explanation h1 {
+    margin-top: 0;
+}
+
+ul.symbol-item-symbol-list {
+    padding-left: 2em;
+}
+
+div#logo img {
+    max-height:100px;
+    max-width:100px;
+}
+
+div#symbol-overview {
+    text-align: center;
+    vertical-align: bottom;
+}
+
+div#symbol-overview img {
+    width:auto;
+    height:auto;
+    max-width:100%;
+    max-height:100%;
+}
+
+div#symbol-overview div {
+    margin-top:10px;
+    margin-bottom:50px;
+}
+    
+
+/* event tilmelding */
+table.prices {
+    border: 0;
+}
+
+table.prices td {
+    padding-right: 1em;
+}
+
+footer {
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    padding-top: 2em;
+    font-size: 0.9rem;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #F5F8FA;
+    width: 100%;
+    bottom: 0;
+    /* Set the fixed height of the footer here */
+    height: 32em;
+}
+
+.social-media {
+    color: darkgray;
+    font-size: 2.5em;
+    margin-right: 0.5em;
+}
+
+.social-media-text {
+    color: black;
+    font-size: 0.9rem;
+}
+
+
+.social-media .fa-facebook:hover {
+    color: #395692;
+}
+
+.social-media .fa-linkedin:hover {
+    color: #007FB2;
+}
+
+.social-media .fa-youtube:hover {
+    color: #f00;
+}
+
+/* Default breakpoints */
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+
+    footer div.col-md-3 {
+        min-width: 50%;
+    }
+}
+
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+    ul.symbol-item-symbol-list {
+        padding-left: 1.2em;
+    }
+    div.card {
+        margin-bottom: 2em;
+    }
+
+    footer {
+        height: 20em;
+    }
+
+    footer div.col-md-3 {
+        min-width: 50%;
+    }
+}
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+
+    body {
+        /* Margin bottom by footer height */
+        margin-bottom: 10em;
+    }
+    
+    div#logo {
+        text-align: left;
+        margin: 20px 0 20px 0;
+    }
+
+    div#site-title {
+        font-size: 250%;
+        margin-top: 1.5rem;
+    }
+
+    div#site-sub-title {
+        font-size: 200%;
+        margin-bottom: 1rem;
+    }
+
+    #wrap {
+        padding-bottom: 4em;
+    }
+
+    div.text-body {
+        padding-right: 5em;
+    }
+
+    .form-horizontal .control-label {
+        text-align: right;
+    }
+    
+    ul.symbol-item-symbol-list {
+        padding-left: 2em;
+    }
+
+    /* Set the fixed height of the footer here */
+    footer {
+        height: 12em;
+    }
+
+    footer div.col-md-3 {
+            min-width: unset;
+    }
+
+    .social-media {
+        font-size: 1.5em;
+        margin-right: 0;
+    }
+}
+
+/*Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1140px) {
+}

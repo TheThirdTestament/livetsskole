@@ -1,0 +1,16 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.BootstrapCard>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = null;
+}
+
+<div class="card" style="width:95%">
+    <div class="card-body">
+        <h5 class="card-title" style="font-size:130%;font-weight:600;text-align:center">@Model.Title</h5>
+        <ul style="list-style:none;padding:1em 1em 0 1em">
+            <li>
+                @Model.MainContent
+            </li>
+        </ul>
+    </div>
+</div>

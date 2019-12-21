@@ -1,0 +1,17 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<NewsletterForm>
+@using ContentModels = Umbraco.Web.PublishedModels;
+
+@{
+    Layout = "master.cshtml";
+}
+<div class="row">
+    <div class="col-12">
+        <h1 class="contact-form-header">@Model.Title</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 registration-form">
+        @Html.Action("Index", "NewsletterFormSurface")
+    </div>
+</div>
+

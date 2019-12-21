@@ -1,0 +1,86 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Event>
+
+@using System.Text.RegularExpressions;
+@using System.Globalization;
+@using ContentModels = Umbraco.Web.PublishedModels;
+
+@{
+    Layout = "master.cshtml";
+}
+
+@helper StripParagraph(string input)
+{
+    if (!string.IsNullOrEmpty(input))
+    {
+        input = Regex.Replace(input, "</?p>", String.Empty);
+        @Html.Raw(input)
+    }
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+
+            @if (Model.EventType != null && Model.EventType == "Foredrag og dialog")
+            {
+                <h4 style="padding-top:2em;">@Model.EventType</h4>
+            }
+
+            @if (Model.Title != null && Model.Title.ToString().Length > 5)
+            {
+                <h1>@Model.Title</h1>
+            }
+
+            <p>
+                @if (Model.Subtitle != null && Model.Subtitle.ToString().Length > 5)
+                {
+                    @Model.Subtitle<br />
+                }
+
+                @if (Model.Lecturer != null && Model.Lecturer.ToString().Length > 5)
+                {
+                    @("/v " + Model.Lecturer)
+            }
+            </p>
+
+
+                @if (Model.Time != null && Model.Time.ToString().Length > 5)
+                {
+                    <p>@Model.Starttime.ToString("D", new CultureInfo("da-DK")), @Model.Time</p>
+                }
+
+                @if (Model.Location != null && Model.Location.ToString().Length > 5)
+                {
+                    @Html.Raw(Model.Location);
+                }
+
+                @*@if (!Model.Town.ToString().IsNullOrWhiteSpace())
+            {
+                <span>@Model.Town.</span>
+            }
+            else
+            {
+                <span>2605 Brøndby.</span>
+            }*@
+
+                @if (Model.Comment != null && Model.Comment.ToString().Length > 5)
+                {
+                    <p>@Model.Comment</p>
+                }
+
+                @if (Model.VideoLink != null && Model.VideoLink.ToString().Length > 5)
+                {
+                    <p><a href="@Model.VideoLink.Url" target="@Model.VideoLink.Target" class="link">@Model.VideoLink.Name<span></span></a></p>
+                }
+
+                <p><a href="@Model.Parent.Url">Til arrangementsoversigten</a></p>
+
+            </div>
+        <div class="col-md-4" style="margin-bottom:2em;">
+            @if (Model.Widgets != null && Html.GetGridHtml(Model, "widgets").ToString().Length > 5)
+            {
+                <div style="padding-top:2em;max-height:100%;max-width:100%;"> @Html.GetGridHtml(Model, "widgets")</div>;
+            }
+        </div>
+    </div>
+</div>

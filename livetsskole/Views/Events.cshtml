@@ -1,0 +1,143 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Events>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using System.Globalization;
+@using System.Text.RegularExpressions;
+@using livetsskole.App_Code;
+@{
+    Layout = "master.cshtml";
+}
+
+@{
+    // Content node selections
+    var root = Umbraco.ContentAtRoot().FirstOrDefault();
+    var selection = root.FirstChildOfType("events").Children().Where(x => x.Value<DateTime>("starttime") > DateTime.Now && x.IsVisible()).OrderBy(x => x.GetProperty("starttime").Value()).ToArray();
+
+    // Foredrag
+    var lectures = selection.Where(x => x.GetProperty("eventType").Value<string>() == "Foredrag og dialog" || x.GetProperty("eventType").Value<string>() == "Studiegruppe" || x.GetProperty("eventType").Value<string>() == "Studiegruppe og foredrag");
+
+    // Fest for Martinus kosmiske indvielse
+    var celebration = selection.Where(x => x.GetProperty("eventType").Value<string>
+        () == "Fest for Martinus komiske indvielse");
+
+    // Sommerskole
+    var seminar = selection.Where(x => x.GetProperty("eventType").Value<string>
+        () == "Seminar");
+
+    // Sommerskole
+    var summerSchool = selection.Where(x => x.GetProperty("eventType").Value<string>
+        () == "Sommerkursus");
+
+
+    @helper StripParagraph(string input)
+    {
+        if (!string.IsNullOrEmpty(input))
+        {
+            input = Regex.Replace(input, "</?p>", String.Empty);
+            @Html.Raw(input)
+        }
+    }
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+
+
+            @if (lectures.Count() > 0 || celebration.Count() > 0 || summerSchool.Count() > 0)
+            {
+
+                <h1>Arrangementer</h1>
+
+
+                if (lectures.Count() > 0)
+                {
+
+
+                    <h2 style="padding-top:1em;">Studiegrupper og foredrag</h2>
+                    <ul style="list-style-type: none;">
+                        @foreach (var item in lectures)
+                        {
+                            if (@item.GetProperty("lecturer").Value().ToString().Trim().Length > 0)
+                            {
+                        <li style="padding-top:1em;">
+                            <a href="@item.Url">
+                                @item.GetProperty("title").Value(), @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("D", new CultureInfo("da-DK")))
+                            </a> <br />
+                            @item.GetProperty("subtitle").Value()
+                            <br />
+                            ved @item.GetProperty("lecturer").Value()<br />
+                            @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("dddd", new CultureInfo("da-DK")).ToString().FirstCharToUpper()) den @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("D", new CultureInfo("da-DK"))), @item.GetProperty("time").Value().ToString().FirstCharToLower().
+                        </li>
+                            }
+                            else
+                            {
+                    <li style="padding-top:1em;">
+                        <a href="@item.Url">
+                            @item.GetProperty("title").Value(), @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("D", new CultureInfo("da-DK")))
+                        </a> <br />
+                        @if (item.GetProperty("eventType").Value<string>() != "Studiegruppe")
+                        {
+                            <i>Nærmere oplysninger følger</i><br />
+                        }
+                        @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("dddd", new CultureInfo("da-DK")).ToString().FirstCharToUpper()) den @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("D", new CultureInfo("da-DK"))) @item.GetProperty("time").Value().ToString().FirstCharToLower().
+                    </li>
+                            }
+                        }
+                    </ul>
+
+
+                }
+                if (celebration.Count() > 0)
+                {
+
+                    <h2 style="padding-top:0.5em;">Den årlige festdag</h2>
+                    <ul style="list-style-type: none;">
+                        @foreach (var item in celebration)
+                        {
+                            <li style="padding-top:1em;">
+                                <a href="@item.Url">@item.Name</a> <br />
+                                @item.GetProperty("time").Value().
+                            </li>
+                        }
+                    </ul>
+                }
+                if (seminar.Count() > 0)
+                {
+                    <h2 style="padding-top:0.5em;">Seminar</h2>
+                    <ul style="list-style-type: none;">
+                        @foreach (var item in seminar)
+                        {
+                        <li style="padding-top:1em;">
+                            <a href="@item.Url">
+                                @item.GetProperty("title").Value(), @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("D", new CultureInfo("da-DK")))
+                            </a> <br />
+                            @item.GetProperty("subtitle").Value()<br />
+                            @item.GetProperty("time").Value().ToString().FirstCharToUpper().
+                        </li>
+                        }
+                    </ul>
+
+                }
+                if (summerSchool.Count() > 0)
+                {
+                    <h2 style="padding-top:0.5em;">Sommerkursus</h2>
+                    <ul style="list-style-type: none;">
+                        @foreach (var item in summerSchool)
+                        {
+                        <li style="padding-top:1em;">
+                            <a href="@item.Url">
+                                @item.GetProperty("title").Value(), @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("D", new CultureInfo("da-DK"))) -  @(((DateTime)item.GetProperty("endtime").GetValue()).ToString("D", new CultureInfo("da-DK")))
+                            </a> <br />
+                            @item.GetProperty("subtitle").Value()<br />
+                            @item.GetProperty("time").Value().ToString().FirstCharToUpper().
+                        </li>
+                        }
+                    </ul>
+
+                }
+            }
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+</div>

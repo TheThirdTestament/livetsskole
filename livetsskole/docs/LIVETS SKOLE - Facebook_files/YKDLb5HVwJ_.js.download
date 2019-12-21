@@ -1,0 +1,3 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["tKREE"]); }
+
+__d("CommerceManagerUtils",["URI","XCommerceManagerIndexController"],(function(a,b,c,d,e,f){"use strict";a={isCommerceManager:function(){var a=b("XCommerceManagerIndexController").getURIBuilder().getURI().getPath();return b("URI").getRequestURI().getPath().startsWith(a)}};e.exports=a}),null);

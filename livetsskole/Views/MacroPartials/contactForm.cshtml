@@ -1,0 +1,75 @@
+﻿@model livetsskole.ViewModels.ContactMessage
+@using reCAPTCHA.MVC
+@{
+    Layout = null;
+}
+@if (TempData["success"] == null)
+{
+    <div class="row">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-8">
+            <p>
+                Har du spørgsmål eller kommentarer er du velkommen til at skrive til os.
+            </p>
+            <br />
+        </div>
+    </div>
+
+    using (Html.BeginUmbracoForm("HandleFormSubmit", "ContactFormSurface", new object { }, new { @class = "form-horizontal" }))
+    {
+
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Name, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-5">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Navn" })
+                @Html.ValidationMessageFor(m => m.Name)
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Email, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-5">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
+                @Html.ValidationMessageFor(m => m.Email)
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Subject, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-5">
+                @Html.TextBoxFor(m => m.Subject, new { @class = "form-control", placeholder = "Emne" })
+                @Html.ValidationMessageFor(m => m.Subject)
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Message, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-5">
+                @Html.TextAreaFor(m => m.Message, new { @class = "form-control", rows = "6", placeholder = "Din besked" })
+                @Html.ValidationMessageFor(m => m.Message)
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.Label(" ", new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-5">
+                @Html.Recaptcha()
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-5 offset-sm-2">
+                <button id="contact-submit" type="submit" class="btn btn-primary input-medium">Send</button>
+            </div>
+        </div>
+    }
+}
+else
+{
+
+    <div class="row">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-8">
+            <p>Tak fordi du kontaktede os. Vi svarer snarest!</p>
+            <br />
+        </div>
+    </div>
+    
+}

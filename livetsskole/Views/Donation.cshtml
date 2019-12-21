@@ -1,0 +1,43 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Donation>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-8">
+
+            @if (Model.Title != null && Model.Title.ToString().Length > 5)
+            {
+                <h1 style="padding-bottom:1em">@Model.Title</h1>
+            }
+
+            @if (Model.MainContent != null && Model.MainContent.ToString().Length > 5)
+            {
+                @Model.MainContent
+            }
+
+        </div>
+
+        <div class="col-md-4 column" style="margin-top: 2.5em;">
+
+            @if (Model.RightPanelPrimary != null && Model.RightPanelPrimary.Count() > 0)
+            {
+                var items = Model.Value<IEnumerable<IPublishedElement>>("rightPanelPrimary");
+
+                foreach (var item in items)
+                {
+                    Html.RenderPartial("~/Views/Partials/_bootstrapCard.cshtml", item);
+                }
+
+            }
+
+            @if (Model.RightPanelSecondary != null && Model.RightPanelSecondary.ToString().Length > 5)
+            {
+                @Model.RightPanelSecondary
+            }
+        </div>
+    </div>
+</div>

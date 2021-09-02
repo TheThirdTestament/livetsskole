@@ -501,7 +501,6 @@
     <Content Include="Views\Home.cshtml" />
     <Content Include="Views\MacroPartials\contactForm.cshtml" />
     <Content Include="Views\MacroPartials\dnv.cshtml" />
-    <Content Include="Views\MacroPartials\dnvWidget.cshtml" />
     <Content Include="Views\MacroPartials\mainMenu.cshtml" />
     <Content Include="Views\MacroPartials\newsletterForm.cshtml" />
     <Content Include="Views\MacroPartials\upcommingEvents.cshtml" />
@@ -514,6 +513,7 @@
     <Content Include="Views\videos.cshtml" />
     <Content Include="Views\_Master.cshtml" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <Content Include="Views\Article.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -526,7 +526,10 @@
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.8\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="docs\" />
     <Folder Include="Views\Default\" />
+    <Folder Include="Views\fz3-15960433267900\" />
+    <Folder Include="Views\fz3-15960434950160\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
   <PropertyGroup>

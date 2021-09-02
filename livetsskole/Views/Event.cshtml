@@ -1,5 +1,5 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Event>
-
+@using livetsskole.App_Code;
 @using System.Text.RegularExpressions;
 @using System.Globalization;
 @using ContentModels = Umbraco.Web.PublishedModels;
@@ -39,43 +39,49 @@
 
                 @if (Model.Lecturer != null && Model.Lecturer.ToString().Length > 5)
                 {
-                    @("/v " + Model.Lecturer)
-            }
+                    @("ved " + Model.Lecturer)
+                }
             </p>
 
 
-                @if (Model.Time != null && Model.Time.ToString().Length > 5)
+            @*@if (Model.Starttime != null && Model.Starttime.ToString().Length > 5 && Model.EndTime != null && Model.EndTime.ToString().Length > 5)
                 {
-                    <p>@Model.Starttime.ToString("D", new CultureInfo("da-DK")), @Model.Time</p>
+                    <p>@Model.Starttime.ToString("dddd \\den d. MMMM yyyy\\, kl. HH:mm", CultureInfo.CreateSpecificCulture("da-DK")).FirstCharToUpper())-@(Model.EndTime.ToString("HH:mm", CultureInfo.CreateSpecificCulture("da-DK")))</p>
                 }
+                else*@
 
-                @if (Model.Location != null && Model.Location.ToString().Length > 5)
-                {
-                    @Html.Raw(Model.Location);
-                }
-
-                @*@if (!Model.Town.ToString().IsNullOrWhiteSpace())
+            @if (Model.Time != null && Model.Time.ToString().Length > 5)
             {
-                <span>@Model.Town.</span>
+                <p>@(((DateTime)Model.Starttime).ToString("dddd \\den d. MMMM yyyy", new CultureInfo("da-DK")).ToString().FirstCharToUpper()), @Model.Time</p>
             }
-            else
+
+            @if (Model.Location != null && Model.Location.ToString().Length > 5)
             {
-                <span>2605 Brøndby.</span>
-            }*@
+                @Html.Raw(Model.Location);
+            }
 
-                @if (Model.Comment != null && Model.Comment.ToString().Length > 5)
+            @*@if (!Model.Town.ToString().IsNullOrWhiteSpace())
                 {
-                    <p>@Model.Comment</p>
+                    <span>@Model.Town.</span>
                 }
-
-                @if (Model.VideoLink != null && Model.VideoLink.ToString().Length > 5)
+                else
                 {
-                    <p><a href="@Model.VideoLink.Url" target="@Model.VideoLink.Target" class="link">@Model.VideoLink.Name<span></span></a></p>
-                }
+                    <span>2605 Brøndby.</span>
+                }*@
 
-                <p><a href="@Model.Parent.Url">Til arrangementsoversigten</a></p>
+            @if (Model.Comment != null && Model.Comment.ToString().Length > 5)
+            {
+                <p>@Model.Comment</p>
+            }
 
-            </div>
+            @if (Model.VideoLink != null && Model.VideoLink.ToString().Length > 5)
+            {
+                <p><a href="@Model.VideoLink.Url" target="@Model.VideoLink.Target" class="link">@Model.VideoLink.Name<span></span></a></p>
+            }
+
+            <p><a href="@Model.Parent.Url">Til arrangementsoversigten</a></p>
+
+        </div>
         <div class="col-md-4" style="margin-bottom:2em;">
             @if (Model.Widgets != null && Html.GetGridHtml(Model, "widgets").ToString().Length > 5)
             {

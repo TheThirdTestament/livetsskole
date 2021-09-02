@@ -24,6 +24,9 @@
     var summerSchool = selection.Where(x => x.GetProperty("eventType").Value<string>
         () == "Sommerkursus");
 
+ // Seminar
+    var seminar = selection.Where(x => x.GetProperty("eventType").Value<string>
+        () == "Seminar");
 
     @helper StripParagraph(string input)
     {
@@ -108,12 +111,38 @@
                     <ul style="list-style-type: none;">
                         @foreach (var item in summerSchool)
                         {
-                            <li style="padding-top:1em;">
-                                @StripParagraph(item.GetProperty("comment").Value().ToString())
-                            </li>
+                            @Html.Raw("<li>");
+
+                            var link = item.Value<Link>("videoLink");
+                            if (link != null)
+                            {
+                                <a href="@link.Url" target="@link.Target">@link.Name</a>
+                                <br />
+                            }
+                            @item.GetProperty("time").Value()
+                            @Html.Raw("</li>");
                         }
                     </ul>
 
+                }
+                if (seminar.Count() > 0)
+                {
+                    <h2 style="padding-top:0.5em;">Seminar</h2>
+                    <ul style="list-style-type: none;">
+                        @foreach (var item in seminar)
+                        {
+                            @Html.Raw("<li>");
+
+                            var link = item.Value<Link>("videoLink");
+                            if (link != null)
+                            {
+                                <a href="@link.Url" target="@link.Target">@link.Name</a>
+                                <br />
+                            }
+                            @item.GetProperty("time").Value()
+                            @Html.Raw("</li>");
+                        }
+                    </ul>
                 }
             }
         </div>

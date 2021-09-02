@@ -41,6 +41,61 @@
 
             <ul style="list-style:none;padding:1em 0em 0em 1em">
 
+
+                @if (summerSchool.Count() > 0)
+                {
+
+                    <li>
+                        <b>Sommerkursus</b>
+                        <ul style="list-style:none;padding:0em 0.5em 0em 0em">
+                            @foreach (var item in summerSchool)
+                            {
+                                <li>
+                                    <a href="@item.Url">
+                                        @item.Name
+                                    </a> <br />
+                                    @item.GetProperty("subtitle").Value().<br />
+                                    @item.GetProperty("time").Value().ToString().FirstCharToUpper().ToString().Trim().
+                                    @if (!@item.GetProperty("town").Value().ToString().IsNullOrWhiteSpace())
+                                    {
+                                        <span>@item.GetProperty("town").Value().ToString().Trim().</span>
+                                    }
+                                    else
+                                    {
+                                        <span>2605 Brøndby.</span>
+                                    }
+                                </li>
+                            }
+                        </ul>
+
+                    </li>
+                }
+                
+                @if (celebration.Count() > 0)
+                {
+
+                    <li>
+                        <b>Den årlige fest</b>
+                        <ul style="list-style:none;padding:0em 0.5em 1em 0em">
+                            @foreach (var item in celebration)
+                            {
+                                <li>
+                                    <a href="@item.Url">@item.GetProperty("title").Value()</a>.<br /> @item.GetProperty("time").Value().ToString().Trim().
+                                    @if (!@item.GetProperty("town").Value().ToString().IsNullOrWhiteSpace())
+                                    {
+                                        <span>@item.GetProperty("town").Value().ToString().Trim().</span>
+                                    }
+                                    else
+                                    {
+                                        <span>2605 Brøndby.</span>
+                                    }
+                                </li>
+                            }
+                        </ul>
+
+                    </li>
+                }
+
                 @if (lectures.Count() > 0)
                 {
 
@@ -111,60 +166,8 @@
 
                     </li>
                 }
-                
-                
-                @if (celebration.Count() > 0)
-                {
 
-                    <li>
-                        <b>Den årlige fest</b>
-                        <ul style="list-style:none;padding:0em 0.5em 1em 0em">
-                            @foreach (var item in celebration)
-                            {
-                                <li>
-                                    <a href="@item.Url">@item.GetProperty("title").Value()</a>.<br /> @item.GetProperty("time").Value().ToString().Trim().
-                                    @if (!@item.GetProperty("town").Value().ToString().IsNullOrWhiteSpace())
-                                    {
-                                        <span>@item.GetProperty("town").Value().ToString().Trim().</span>
-                                    }
-                                    else
-                                    {
-                                        <span>2605 Brøndby.</span>
-                                    }
-                                </li>
-                            }
-                        </ul>
 
-                    </li>
-                }
-                @if (summerSchool.Count() > 0)
-                {
-
-                    <li>
-                        <b>Sommerkursus</b>
-                        <ul style="list-style:none;padding:0em 0.5em 0em 0em">
-                            @foreach (var item in summerSchool)
-                            {
-                                <li>
-                                    <a href="@item.Url">
-                                        @item.Name
-                                    </a> <br />
-                                    @item.GetProperty("subtitle").Value()<br />
-                                    @item.GetProperty("time").Value().ToString().FirstCharToUpper().ToString().Trim().
-                                    @if (!@item.GetProperty("town").Value().ToString().IsNullOrWhiteSpace())
-                                    {
-                                        <span>@item.GetProperty("town").Value().ToString().Trim().</span>
-                                    }
-                                    else
-                                    {
-                                        <span>2605 Brøndby.</span>
-                                    }
-                                </li>
-                            }
-                        </ul>
-
-                    </li>
-                }
 
             </ul>
         </div>

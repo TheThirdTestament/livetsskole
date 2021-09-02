@@ -24,8 +24,8 @@ namespace DttInfo.Controllers
 
             MailMessage message = new MailMessage();
             //message.To.Add("mail@dettredietestamente.info");
-            //message.CC.Add("jan@langekaer.dk");
-            message.To.Add("jesarbov@gmail.com");
+            message.CC.Add("jan@langekaer.dk");
+            //message.To.Add("jesarbov@gmail.com");
             message.CC.Add("jesarbov@gmail.com");
             message.Subject = "Mail fra livetsskole.info: Tilmelding til nyhedsbrev";
             message.From = new MailAddress(model.Email, model.Firstname + " " + model.Lastname);

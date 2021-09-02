@@ -1,0 +1,35 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using Umbraco.Core.Models
+@using Umbraco.Web
+
+
+@{
+
+    // Content node selection
+    var root = Umbraco.ContentAtRoot().Where(x => x.Name == "Global").FirstOrDefault();
+    var item = root.FirstChildOfType("dnv").Children().Where(x => x.IsVisible()).OrderByDescending(x => x.GetProperty("volume").Value()).ThenBy(x => x.GetProperty("issue").Value()).First();
+    
+    //int i = 0;
+    string titleText = "";
+    
+
+    int grid = 4;
+    double gridCol = 12 / grid;
+    var intGridCol = (int)Math.Ceiling(gridCol);
+}
+
+@{
+ 
+    var imageUrl = item.Value<IPublishedContent>("cover").Url;
+ 
+    <div class="card" style="text-align:center;background-color:white;border:hidden">
+        
+        <div style="padding: 1em 0 0.5em 0;">
+            <p style="text-align: center;">
+                <img src="/media/4deh0o04/martinus-og-martinus-institut.png?width=337&amp;height=479" alt="" width="337" height="450" data-udi="umb://media/3b7dc9f6805e47f2ac3af3eea932bc8c" />
+                <a href="../artikler-og-boger/" title="Artikler og bøger">Ny bog ude nu</a>
+
+            </p>
+        </div>
+    </div>
+}

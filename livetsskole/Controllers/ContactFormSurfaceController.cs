@@ -50,7 +50,7 @@ namespace livetsskole.Controllers
                 // smarterasp smtp server
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtp.UseDefaultCredentials = false;
-                smtp.Host = "mail.livetsskole.info";
+                smtp.Host = "smtp-relay.sendinblue.com";
                 smtp.Port = 25;
                 smtp.Credentials = new NetworkCredential("mail@livetsskole.info", "zpx6erq*2cpv5AF");
                 smtp.EnableSsl = false;

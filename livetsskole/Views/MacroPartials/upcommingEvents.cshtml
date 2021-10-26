@@ -124,6 +124,7 @@
                                 {
                                     <li>
                                         <strong>@item.GetProperty("title").Value()</strong><br />
+                                        <a href="@item.Url">@item.GetProperty("subtitle").Value()</a><br />
                                         @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("D", new CultureInfo("da-DK"))), @item.GetProperty("time").Value().ToString().FirstCharToLower().Trim().
                                         @if (!@item.GetProperty("town").Value().ToString().IsNullOrWhiteSpace())
                                         {

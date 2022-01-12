@@ -63,8 +63,10 @@
                             <a href="@item.Url">
                                 @item.GetProperty("title").Value()
                             </a> <br />
-                            @item.GetProperty("subtitle").Value()
-                            <br />
+                            @if (@item.GetProperty("subtitle").Value().ToString().Trim().Length > 0) {
+                                @item.GetProperty("subtitle").Value()
+                                <br />
+                            }
                             ved @item.GetProperty("lecturer").Value()<br />
                             @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("dddd", new CultureInfo("da-DK")).ToString().FirstCharToUpper()) den @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("D", new CultureInfo("da-DK"))), @item.GetProperty("time").Value().ToString().FirstCharToLower().
                         </li>

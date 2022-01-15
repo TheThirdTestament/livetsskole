@@ -105,36 +105,41 @@
                             {
                                 if (@item.GetProperty("lecturer").Value().ToString().Trim().Length > 0)
                                 {
-                                    <li>
-                                        <strong>@item.GetProperty("title").Value()</strong><br />
-                                        <a href="@item.Url">@item.GetProperty("subtitle").Value()</a><br />
-                                        ved @item.GetProperty("lecturer").Value()<br />
-                                        @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("D", new CultureInfo("da-DK"))), @item.GetProperty("time").Value().ToString().FirstCharToLower().Trim().
-                                        @if (!@item.GetProperty("town").Value().ToString().IsNullOrWhiteSpace())
-                                        {
-                                            <span>@item.GetProperty("town").Value().ToString().Trim().</span>
-                                        }
-                                        else
-                                        {
-                                            <span>2605 Brøndby.</span>
-                                        }
-                                    </li>
+                            <li>
+                                <strong>@item.GetProperty("title").Value()</strong><br />
+                                @if (@item.GetProperty("subtitle").Value().ToString().Length > 4) { 
+                                    <a href="@item.Url">@item.GetProperty("subtitle").Value()</a><br />
+                                }
+                                ved @item.GetProperty("lecturer").Value()<br />
+                                @((((DateTime)item.GetProperty("starttime").GetValue()).ToString("dddd \\den d. MMMM yyyy\\, kl. HH:mm", CultureInfo.CreateSpecificCulture("da-DK")).FirstCharToUpper())).
+                                @if (!@item.GetProperty("town").Value().ToString().IsNullOrWhiteSpace())
+                                {
+                                    <span>@item.GetProperty("town").Value().ToString().Trim().</span>
                                 }
                                 else
                                 {
-                                    <li>
-                                        <strong>@item.GetProperty("title").Value()</strong><br />
-                                        <a href="@item.Url">@item.GetProperty("subtitle").Value()</a><br />
-                                        @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("D", new CultureInfo("da-DK"))), @item.GetProperty("time").Value().ToString().FirstCharToLower().Trim().
-                                        @if (!@item.GetProperty("town").Value().ToString().IsNullOrWhiteSpace())
-                                        {
-                                            <span>@item.GetProperty("town").Value().ToString().Trim().</span>
-                                        }
-                                        else
-                                        {
-                                            <span>2605 Brøndby.</span>
-                                        }
-                                    </li>
+                                    <span>2605 Brøndby.</span>
+                                }
+                            </li>
+                                }
+                                else
+                                {
+                        <li>
+                            <strong>@item.GetProperty("title").Value()</strong><br />
+                            @if (@item.GetProperty("subtitle").Value().ToString().Length > 4)
+                            {
+                                <a href="@item.Url">@item.GetProperty("subtitle").Value()</a><br />
+                            }
+                            @((((DateTime)item.GetProperty("starttime").GetValue()).ToString("dddd \\den d. MMMM yyyy\\, kl. HH:mm", CultureInfo.CreateSpecificCulture("da-DK")).FirstCharToUpper())).
+                            @if (!@item.GetProperty("town").Value().ToString().IsNullOrWhiteSpace())
+                            {
+                                <span>@item.GetProperty("town").Value().ToString().Trim().</span>
+                            }
+                            else
+                            {
+                                <span>2605 Brøndby.</span>
+                            }
+                        </li>
                                 }
                             }
                         </ul>

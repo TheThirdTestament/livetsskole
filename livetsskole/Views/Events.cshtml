@@ -70,9 +70,12 @@
                             }
                             ved @item.GetProperty("lecturer").Value()<br />
 
-                            @((((DateTime)item.GetProperty("starttime").GetValue()).ToString("dddd \\den d. MMMM yyyy\\, kl. HH:mm", CultureInfo.CreateSpecificCulture("da-DK")).FirstCharToUpper())) -  
-                            @((((DateTime)item.GetProperty("endtime").GetValue()).ToString("HH:mm", new CultureInfo("da-DK")).ToString().FirstCharToUpper())).
-
+                            @((((DateTime)item.GetProperty("starttime").GetValue()).ToString("dddd \\den d. MMMM yyyy\\, kl. HH:mm", CultureInfo.CreateSpecificCulture("da-DK")).FirstCharToUpper())) -
+                            @((((DateTime)item.GetProperty("endtime").GetValue()).ToString("HH:mm", new CultureInfo("da-DK")).ToString().FirstCharToUpper())).<br />
+                            @if (item.GetProperty("town").Value() != null && item.GetProperty("town").Value().ToString().Length > 5)
+                            {
+                                @Html.Raw(item.GetProperty("town").Value());
+                            }
                             @*(((DateTime)item.GetProperty("starttime").GetValue()).ToString("dddd", new CultureInfo("da-DK")).ToString().FirstCharToUpper()) den @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("D", new CultureInfo("da-DK"))), @item.GetProperty("time").Value().ToString().FirstCharToLower().*@
                         </li>
                             }
@@ -86,7 +89,11 @@
                         {
                             <i>Nærmere oplysninger følger</i><br />
                         }
-                        @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("dddd", new CultureInfo("da-DK")).ToString().FirstCharToUpper()) den @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("D", new CultureInfo("da-DK"))) @item.GetProperty("time").Value().ToString().FirstCharToLower().
+                        @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("dddd", new CultureInfo("da-DK")).ToString().FirstCharToUpper()) den @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("D", new CultureInfo("da-DK"))) @item.GetProperty("time").Value().ToString().FirstCharToLower().<br />
+                        @if (item.GetProperty("town").Value() != null && item.GetProperty("town").Value().ToString().Length > 5)
+                        {
+                            @Html.Raw(item.GetProperty("town").Value());
+                        }
                     </li>
                             }
                         }
@@ -101,10 +108,14 @@
                     <ul style="list-style-type: none;">
                         @foreach (var item in celebration)
                         {
-                            <li style="padding-top:1em;">
-                                <a href="@item.Url">@item.Name</a> <br />
-                                @item.GetProperty("time").Value().
-                            </li>
+                        <li style="padding-top:1em;">
+                            <a href="@item.Url">@item.Name</a> <br />
+                            @item.GetProperty("time").Value().<br />
+                            @if (item.GetProperty("town").Value() != null && item.GetProperty("town").Value().ToString().Length > 5)
+                            {
+                                @Html.Raw(item.GetProperty("town").Value());
+                            }
+                        </li>
                         }
                     </ul>
                 }
@@ -120,6 +131,10 @@
                             </a> <br />
                             @item.GetProperty("subtitle").Value()<br />
                             @item.GetProperty("time").Value().ToString().FirstCharToUpper().
+                            @if (item.GetProperty("town").Value() != null && item.GetProperty("town").Value().ToString().Length > 5)
+                            {
+                                @Html.Raw(item.GetProperty("town").Value());
+                            }
                         </li>
                         }
                     </ul>

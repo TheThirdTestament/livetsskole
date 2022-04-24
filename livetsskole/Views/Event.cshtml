@@ -45,12 +45,16 @@
 
 
             @*@if (Model.Starttime != null && Model.Starttime.ToString().Length > 5 && Model.EndTime != null && Model.EndTime.ToString().Length > 5)
-                {
-                    <p>@Model.Starttime.ToString("dddd \\den d. MMMM yyyy\\, kl. HH:mm", CultureInfo.CreateSpecificCulture("da-DK")).FirstCharToUpper())-@(Model.EndTime.ToString("HH:mm", CultureInfo.CreateSpecificCulture("da-DK")))</p>
-                }
-                else*@
+        {
+            <p>@Model.Starttime.ToString("dddd \\den d. MMMM yyyy\\, kl. HH:mm", CultureInfo.CreateSpecificCulture("da-DK")).FirstCharToUpper())-@(Model.EndTime.ToString("HH:mm", CultureInfo.CreateSpecificCulture("da-DK")))</p>
+        }
+        else*@
 
-            @if (Model.Time != null && Model.Time.ToString().Length > 5)
+            @if (Model.Starttime.Date != Model.EndTime.Date)
+            {
+                <p>@(((DateTime)Model.Starttime).ToString("dddd \\den d. MMMM\\, kl. HH:mm", CultureInfo.CreateSpecificCulture("da-DK")).FirstCharToUpper()) - @(((DateTime)Model.EndTime).ToString("dddd \\den d. MMMM\\, kl. HH:mm", CultureInfo.CreateSpecificCulture("da-DK")).FirstCharToLower())</p>
+            }
+            else if (Model.Time != null && Model.Time.ToString().Length > 5)
             {
                 <p>@(((DateTime)Model.Starttime).ToString("dddd \\den d. MMMM yyyy\\, kl. HH:mm", CultureInfo.CreateSpecificCulture("da-DK")).FirstCharToUpper())-@(Model.EndTime.ToString("HH:mm", new CultureInfo("da-DK")).ToString().FirstCharToUpper())</p>
             }
@@ -61,13 +65,13 @@
             }
 
             @*@if (!Model.Town.ToString().IsNullOrWhiteSpace())
-                {
-                    <span>@Model.Town.</span>
-                }
-                else
-                {
-                    <span>2605 Brøndby.</span>
-                }*@
+        {
+            <span>@Model.Town.</span>
+        }
+        else
+        {
+            <span>2605 Brøndby.</span>
+        }*@
 
             @if (Model.Comment != null && Model.Comment.ToString().Length > 5)
             {

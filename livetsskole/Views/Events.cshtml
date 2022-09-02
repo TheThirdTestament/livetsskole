@@ -19,7 +19,7 @@
     var celebration = selection.Where(x => x.GetProperty("eventType").Value<string>
         () == "Fest for Martinus komiske indvielse");
 
-    // Sommerskole
+    // Seminar
     var seminar = selection.Where(x => x.GetProperty("eventType").Value<string>
         () == "Seminar");
 
@@ -70,8 +70,8 @@
                             }
                             ved @item.GetProperty("lecturer").Value()<br />
 
-                            @((((DateTime)item.GetProperty("starttime").GetValue()).ToString("dddd \\den d. MMMM yyyy\\, kl. HH:mm", CultureInfo.CreateSpecificCulture("da-DK")).FirstCharToUpper())) -
-                            @((((DateTime)item.GetProperty("endtime").GetValue()).ToString("HH:mm", new CultureInfo("da-DK")).ToString().FirstCharToUpper())).<br />
+                            @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("dddd", new CultureInfo("da-DK")).ToString().FirstCharToUpper()) den @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("D", new CultureInfo("da-DK"))) @item.GetProperty("time").Value().ToString().FirstCharToLower().<br />
+
                             @if (item.GetProperty("town").Value() != null && item.GetProperty("town").Value().ToString().Length > 5)
                             {
                                 @Html.Raw(item.GetProperty("town").Value());
@@ -89,7 +89,7 @@
                         {
                             <i>Nærmere oplysninger følger</i><br />
                         }
-                        @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("dddd", new CultureInfo("da-DK")).ToString().FirstCharToUpper()) den @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("D", new CultureInfo("da-DK"))) @item.GetProperty("time").Value().ToString().FirstCharToLower().<br />
+                        @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("dddd", new CultureInfo("da-DK")).ToString().FirstCharToUpper()) den @(((DateTime)item.GetProperty("starttime").GetValue()).ToString("D", new CultureInfo("da-DK"))) @item.GetProperty("time").Value().ToString().<br />
                         @if (item.GetProperty("town").Value() != null && item.GetProperty("town").Value().ToString().Length > 5)
                         {
                             @Html.Raw(item.GetProperty("town").Value());

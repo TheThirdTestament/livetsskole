@@ -56,7 +56,9 @@
             }
             else if (Model.Time != null && Model.Time.ToString().Length > 5)
             {
-                <p>@(((DateTime)Model.Starttime).ToString("dddd \\den d. MMMM yyyy\\, kl. HH:mm", CultureInfo.CreateSpecificCulture("da-DK")).FirstCharToUpper())-@(Model.EndTime.ToString("HH:mm", new CultureInfo("da-DK")).ToString().FirstCharToUpper())</p>
+                @*<p>@(((DateTime)Model.Starttime).ToString("dddd \\den d. MMMM yyyy\\, kl. HH:mm", CultureInfo.CreateSpecificCulture("da-DK")).FirstCharToUpper())-@(Model.EndTime.ToString("HH:mm", new CultureInfo("da-DK")).ToString().FirstCharToUpper())</p>*@
+
+                <p>@(((DateTime)Model.GetProperty("starttime").GetValue()).ToString("dddd", new CultureInfo("da-DK")).ToString().FirstCharToUpper()) den @(((DateTime)Model.GetProperty("starttime").GetValue()).ToString("D", new CultureInfo("da-DK"))) @Model.GetProperty("time").Value().ToString().FirstCharToLower().</p>
             }
 
             @if (Model.Location != null && Model.Location.ToString().Length > 5)

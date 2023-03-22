@@ -110,7 +110,7 @@
                                     <a href="@item.Url">@item.GetProperty("subtitle").Value()</a><br />
                                 }
                                 ved @item.GetProperty("lecturer").Value()<br />
-                                @((((DateTime)item.GetProperty("starttime").GetValue()).ToString("dddd \\den d. MMMM yyyy\\, kl. HH:mm", CultureInfo.CreateSpecificCulture("da-DK")).FirstCharToUpper())).
+                                @((((DateTime)item.GetProperty("starttime").GetValue()).ToString("dddd \\den d. MMMM yyyy", CultureInfo.CreateSpecificCulture("da-DK")).FirstCharToUpper())).
                                 @if (!@item.GetProperty("town").Value().ToString().IsNullOrWhiteSpace())
                                 {
                                     <span>@item.GetProperty("town").Value().ToString().Trim().</span>
@@ -129,7 +129,7 @@
                             {
                                 <a href="@item.Url">@item.GetProperty("subtitle").Value()</a><br />
                             }
-                            @((((DateTime)item.GetProperty("starttime").GetValue()).ToString("dddd \\den d. MMMM yyyy\\, kl. HH:mm", CultureInfo.CreateSpecificCulture("da-DK")).FirstCharToUpper())).
+                            @((((DateTime)item.GetProperty("starttime").GetValue()).ToString("dddd \\den d. MMMM yyyy", CultureInfo.CreateSpecificCulture("da-DK")).FirstCharToUpper())).
                             @if (!@item.GetProperty("town").Value().ToString().IsNullOrWhiteSpace())
                             {
                                 <span>@item.GetProperty("town").Value().ToString().Trim().</span>
